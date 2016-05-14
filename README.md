@@ -25,16 +25,17 @@ CONFIGURATION
 Soon I'll commit a config.php file for this, but for now...
 
 In ipcam.php:
-   - Search for <div class="box">... and modify the "fancybox" <a href> and the <img src> location, according to your needs
-   - Change <title> name and <span id="title"> according to your needs.
+   - Search for <pre><<span>div class="box"</span>>...</pre> and modify the <pre><<span>a class="fancybox" href...</span></pre> and the <pre><<span>img class="ipstr" src...</span></pre> location, according to your needs.
+  
+   - Change title text and <pre><<span>span id="title"</span>></pre> according to your needs.
 
 In dspace2.php
    - Change the following code using the path where you put your cams recodings to monitor your recorder space.
    (or change it to monitor any other drive you want, LOL)
-   
-   	/* get disk space free (in bytes) */
-	$df = disk_free_space("/mnt/USB3Store");
-	/* and get disk space total (in bytes)  */
-	$dt = disk_total_space("/mnt/USB3Store");
-
+   <pre>
+   	/* get disk space free (in bytes) */<br>
+	$df = disk_free_space("/mnt/USB3Store");<br>
+	/* and get disk space total (in bytes)  */<br>
+	$dt = disk_total_space("/mnt/USB3Store");<br>
+   </pre>
 That's all for now. ^^ Enjoy. :)
