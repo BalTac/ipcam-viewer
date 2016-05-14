@@ -38,4 +38,5 @@ In dspace2.php
 	/* and get disk space total (in bytes)  */<br>
 	$dt = disk_total_space("/mnt/USB3Store");<br>
    </pre>
+
 That's all for now. ^^ Enjoy. :)
