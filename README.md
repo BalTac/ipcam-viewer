@@ -14,11 +14,10 @@ critic can be useful.
 INSTALLATION NOTES
 ------------------
 You must have an home server with PHP5 and a browser with JAVA support. Personally I use an old Acer Aspire ONE with 
-a custom Ubuntu distribution, called BackBox (https://backbox.org). The project is mainly hand-coded and debugged
-using FireFox but I've tried in Google Chrome and Safari without problems.
+a custom Ubuntu distribution, called BackBox (https://backbox.org). The project is mainly frankenstein-coded (stealing and sawing part of code all over the web) and debugged using FireFox but I've tried in Google Chrome and Safari without problems.
 
 Put the files in your root WWW folder, or in any subfolder and use your browser to show it. 
-Simply call http://your_server_ip_or_name/your_folder/ipcam.php
+Simply call <pre>http://your_server_ip_or_name/your_folder/ipcam.php</pre>
 
 CONFIGURATION
 -------------
