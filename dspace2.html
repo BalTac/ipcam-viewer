@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+	<title>Disk Space</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style type='text/css'>
+	/* If you want you can use font-face */
+	@font-face {
+		font-family: 'BebasNeuewebfont';
+		src: url('./fonts/BebasNeuewebfont/BebasNeuewebfont.eot');
+		src: local('BebasNeuewebfont'), url('./fonts/BebasNeuewebfont/BebasNeuewebfont.woff') format('woff'), url('./fonts/BebasNeuewebfont/BebasNeuewebfont.ttf') format('truetype');
+	}
+
+	.border {
+		width: auto;
+		height: 60px;
+		margin: 0 auto;
+		padding: 3px;
+		border: 1px solid #333;
+		color: #fff;
+	}
+    .progress {
+            border: 2px solid #5E96E4;
+            height: 24px;
+            width: auto;
+            margin: 10px auto;
+    }
+    .progress .prgbar {
+            background: #A7C6FF;
+            width: 0%;
+            position: relative;
+            height: 24px;
+            z-index: 999;
+    }
+    .progress .prgtext {
+            color: #286692;
+            text-align: center;
+			font-family: 'BebasNeuewebfont', Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            padding: 4px 0 0;
+            width: 95%;
+            position: absolute;
+            z-index: 1000;
+    }
+    .progress .prginfo {
+			font-family: 'BebasNeuewebfont', Arial, Helvetica, sans-serif;
+			font-size: 13px;
+            margin: 3px 0;
+			color: #A7C6FF;
+			padding:3px;
+			text-shadow: 0 0 5px #00c6ff;
+	}
+
+    </style>
+	<body>
+	<div class="border">
+        <div class='progress'>
+            <div class='prgtext'>Reading...</div>
+            <div class='prgbar'></div>
+            <div class='prginfo'>
+                    <span id="used" style='float: left;'><?php echo "$du of $dt used"; ?></span>
+                    <span id="free" style='float: right;'><?php echo "$df of $dt free"; ?></span>
+                    <span id="note" style='clear: both;'></span>
+            </div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function () {
+		setInterval(function() {
+			$('div.prgtext').html('Updating...');
+			$.getJSON('dspace2.php', { get_param: 'value' }, function(data) {
+				$.each(data, function(index, element) {
+					$('div.prgbar').css('width', element.dp + '%');
+					$('div.prgtext').html(element.dp + '% Disk Used');
+					$('#used').html(element.du + ' of ' + element.dt + ' used');
+					$('#free').html(element.df + ' of ' + element.dt + ' free');
+				});
+			});
+		}, 5000);
+	});
+	</script>
+    </body>
+    </html>
