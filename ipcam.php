@@ -31,12 +31,8 @@
 	}
 	#index {
 		margin: 0 auto 0 auto;
-		width:80%;
-<<<<<<< Updated upstream
-        	min-width: 940px;
-=======
-        min-width: 940px;
->>>>>>> Stashed changes
+		width:95%;
+		min-width: 950px;
 		color:white;
 		border-radius: 5px;
 		text-align:center;
