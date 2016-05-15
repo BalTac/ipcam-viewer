@@ -29,7 +29,9 @@
 		color:white;
 	}
 	#index {
-		display: inline-block;
+		margin: 0 auto 0 auto;
+		width:80%;
+        	min-width: 940px;
 		color:white;
 		border-radius: 5px;
 		text-align:center;
