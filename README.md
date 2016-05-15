@@ -30,7 +30,7 @@ In ipcam.php:
    - Change title text and <pre><<span>span id="title"</span>></pre> according to your needs.
 
 In dspace2.php
-   - Change the following code using the path where you put your cams recodings to monitor your recorder space.
+   - Change the following code using the path of the HDD where you put your cams recodings to monitor the remaining storage.
    (or change it to monitor any other drive you want, LOL)
    <pre>
    	/* get disk space free (in bytes) */
