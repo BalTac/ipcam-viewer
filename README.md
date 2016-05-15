@@ -24,7 +24,7 @@ CONFIGURATION
 Soon I'll build a config.php file for this, but for now...
 
 In ipcam.php:
-   - Search for <pre><<span>div class="box"</span>>...</pre> and edit the <pre><<span>a class="fancybox" href...</span></pre> and the <pre><<span>img class="ipstr" src...</span></pre> url, according to your camera stream sources.
+   - Search for <pre><<span>div class="box"</span>>...</pre> and edit the URLs in: <pre><<span>a class="fancybox" href...</span></pre> and in: <pre><<span>img class="ipstr" src...</span></pre> according to your camera videostream sources.
    In my case I use Mr-Dave Motion for linux (https://github.com/Mr-Dave/motion) to collect all the video streams from my old ip cameras. Using this program you can manage motion detection, recordings, videostreams in one place, and finally make it available to the localhost and then forwarding them to the web. But if you want, without using any intermediary software at all, you can configure every single ip camera to be exposed directly through the frontend. To find the appropriate url to expose your ip camera video stream, please refer to the manufacturer manual, or google for it. There are large Camera Connection Databases over the web...
   
    - Change title text and <pre><<span>span id="title"</span>></pre> according to your needs.
