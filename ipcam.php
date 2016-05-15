@@ -27,11 +27,16 @@
 	body {
 		background-color:black;
 		color:white;
+
 	}
 	#index {
 		margin: 0 auto 0 auto;
 		width:80%;
+<<<<<<< Updated upstream
         	min-width: 940px;
+=======
+        min-width: 940px;
+>>>>>>> Stashed changes
 		color:white;
 		border-radius: 5px;
 		text-align:center;
@@ -207,7 +212,7 @@
 		$color = 'red';
 	}
 ?>
-    <body>
+    <body align="center">
         <div id="index">
 			<div id="header">
 				<img id="plate" src="images/img_trans.gif">
@@ -269,7 +274,8 @@
 						sum+=(diff/1000);
 					}
 					fps=(Math.round(fps*100)/100).toFixed(1);
-					$('<div class="pulse" style="width:'+fps+'px;"></div>').appendTo('#pulse'+cam).delay(1000).fadeIn(function() {$(this).remove();});
+					//$('<div class="pulse" style="width:'+fps+'px;"></div>').appendTo('#pulse'+cam).delay(1000).fadeIn(function() {$(this).remove();});
+					$('<div class="pulse" style="width:1px;"></div>').appendTo('#pulse'+cam).delay(1000).fadeIn(function() {$(this).remove();});
 					if ( sum>=1 ) {
 						$('#fps'+cam).html('fps: '+fps);
 						sum=0;
