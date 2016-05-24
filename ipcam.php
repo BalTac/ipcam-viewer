@@ -238,7 +238,7 @@
 			</div>
 		</div>
 	<audio id="flash" preload="auto">
-		<source src="audio/camera_flash.mp3"></source>
+		<source src="audio/button-46.wav"></source>
 		This browser does not support the HTML5 audio tag.
 	</audio>
 	<audio id="click" preload="auto">
