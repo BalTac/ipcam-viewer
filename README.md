@@ -4,7 +4,7 @@ Pannello di controllo moderno, reattivo e basato su glassmorphism per il monitor
 
 | Grid View | Configuration & Scanner | Image Calibration |
 | :---: | :---: | :---: |
-| <img src="images/preview_grid.png" width="100%" alt="Grid View"> | <img src="images/settings_scanner.png" width="100%" alt="Scanner Settings"> | <img src="images/filters_preview.png" width="100%" alt="Filters Preview"> |
+| <img src="resources/dashboard.png" width="100%" alt="Grid View"> | <img src="resources/settings1.png" width="100%" alt="Scanner Settings"> | <img src="resources/settings2.png" width="100%" alt="Filters Preview"> |
 
 ---
 
