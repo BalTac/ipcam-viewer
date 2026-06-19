@@ -1,0 +1,66 @@
+{
+  "server": {
+    "local_host": "127.0.0.1",
+    "remote_host": "",
+    "subnet_prefixes": [
+      "192.168.",
+      "10.0.",
+      "127.0.0.1",
+      "localhost",
+      "::1"
+    ],
+    "audio_enabled_default": true
+  },
+  "disks": [
+    {
+      "name": "Disco Locale (C:)",
+      "path": "C:\\"
+    }
+  ],
+  "cameras": [
+    {
+      "id": "cam1",
+      "name": "Camera 1 (Demo)",
+      "stream_url": "http://192.168.50.180/cam1/",
+      "filters": {
+        "brightness": 77,
+        "contrast": 132,
+        "grayscale": 0,
+        "sharp": true
+      }
+    },
+    {
+      "id": "cam2",
+      "name": "Camera 2 (Demo)",
+      "stream_url": "http://192.168.50.180/cam2/",
+      "filters": {
+        "brightness": 111,
+        "contrast": 102,
+        "grayscale": 0,
+        "sharp": false
+      }
+    },
+    {
+      "id": "cam3",
+      "name": "Camera 3 (Demo)",
+      "stream_url": "http://192.168.50.180/cam3/",
+      "filters": {
+        "brightness": 70,
+        "contrast": 190,
+        "grayscale": 0,
+        "sharp": true
+      }
+    },
+    {
+      "id": "cam_8084",
+      "name": "Camera Porta 8084",
+      "stream_url": "http://192.168.50.180:8084",
+      "filters": {
+        "brightness": 100,
+        "contrast": 117,
+        "grayscale": 0,
+        "sharp": true
+      }
+    }
+  ]
+}
