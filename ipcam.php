@@ -697,8 +697,12 @@
         <header>
             <div class="brand-section">
                 <img src="images/ipcam.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
-                <div class="brand-text">
-                    <h1>IPCams Viewer</h1>
+                <div class="brand-text" style="display: flex; flex-direction: column; gap: 0.15rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <h1 style="line-height: 1;">IPCams Viewer</h1>
+                        <span class="status-badge" style="font-size: 0.65rem; padding: 0.15rem 0.4rem; background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.2); color: var(--accent-cyan); font-weight: 600; line-height: 1; border-radius: 4px; display: inline-flex; align-items: center;">v2.0</span>
+                        <span class="status-badge" style="font-size: 0.65rem; padding: 0.15rem 0.4rem; background: rgba(255, 255, 255, 0.03); border-color: var(--glass-border); color: var(--text-secondary); font-weight: 500; line-height: 1; border-radius: 4px; display: inline-flex; align-items: center;">&copy; 2016-2026 BalTac</span>
+                    </div>
                     <p>Pannello di Controllo Domestico</p>
                 </div>
             </div>

@@ -1,42 +1,91 @@
-# ipcam-viewer
-Home iPCamera remote survey frontend in PHP and JQuery for home servers and DVR.
+# IPCams Viewer v2.0
 
-Actually this project was not intended for public distribution, but since I have to keep updated this code 
-in more than one server, I decided to use github to synchronize changes. 
+Pannello di controllo moderno, reattivo e basato su glassmorphism per il monitoraggio e la gestione di flussi video M-JPEG/RTSP provenienti da telecamere IP locali e remote.
 
-There are many project like this and really better than this, out there. So if you are looking for a well coded and full working
-frontend for your home server, please, simply ignore this work. But if you want use my code or contribute to this project 
-in any way, you're wellcome.
+| Grid View | Configuration & Scanner | Image Calibration |
+| :---: | :---: | :---: |
+| <img src="images/preview_grid.png" width="100%" alt="Grid View"> | <img src="images/settings_scanner.png" width="100%" alt="Scanner Settings"> | <img src="images/filters_preview.png" width="100%" alt="Filters Preview"> |
 
-I had never coded JQuery before, and I'm also beginner regarding PHP so any suggestions or constructive
-critic can be useful.
+---
 
-INSTALLATION NOTES
-------------------
-You must have an home server with PHP5 support and a browser with JAVA support. Personally I use an old Acer Aspire ONE with 
-a custom Ubuntu distribution, called BackBox (https://backbox.org). The project is mainly frankenstein-coded (stealing, reworking and sawing parts of code all over the web) and debugged using FireFox but I've tried in Google Chrome and Safari without issues.
+## 🌟 Caratteristiche Principali
 
-Put the files in your root WWW folder, or in any subfolder and use your browser to show it. 
-Simply call <pre>http://your_server_ip_or_name/your_folder/ipcam.php</pre>
+*   **Interfaccia UI/UX Ultra-Moderna (Glassmorphism)**: Layout reattivo a schermo intero senza barre di scorrimento, ottimizzato per schermi touch e monitor di sorveglianza CCTV.
+*   **Adattamento Griglia Intelligente**: Risolutore geometrico che posiziona e dimensiona i riquadri delle telecamere in modo ottimale a seconda della grandezza dello schermo, mantenendo la proporzione nativa 16:10 senza deformare o tagliare i flussi video.
+*   **Scanner di Rete Asincrono Integrato**:
+    *   *Host Singolo (Scansione Porte)*: Rileva flussi e porte aperte (es. porte di MotionEye) su un determinato IP.
+    *   *Classe Sottorete (Scansione Host)*: Esegue il ping parallelo ad alte prestazioni di 254 host in meno di 1 secondo su una specifica porta.
+    *   *Anteprima e Integrazione Rapida*: Testa la telecamera nello scanner prima di importarla istantaneamente con un click nel form di configurazione.
+*   **Calibrazione Immagine in Tempo Reale**: Sliders per la regolazione GPU-accelerata di Luminosità, Contrasto, Bianco e Nero (Grayscale) e Nitidezza per ciascuna telecamera. Include un'**Anteprima Dedicata** interna per calibrare le immagini anche quando la dashboard principale è sfocata dal modale impostazioni.
+*   **Configurazione Centralizzata**: Gestione completa di telecamere, dischi e host tramite un singolo file [config.json](config.json) modificabile direttamente dalla GUI.
+*   **Emulatore Locale Zero-Dependency**: File [server.py](server.py) in Python 3.11+ che emula completamente l'API di produzione PHP ([api.php](api.php)), consentendo lo sviluppo locale istantaneo.
+*   **Monitoraggio Risorse**: Widget per lo stato dello storage dei dischi (con avvisi visivi di saturazione) e orologio digitale sincronizzato con il server.
 
-CONFIGURATION
--------------
-Soon I'll build a config.php file for this, but for now...
+---
 
-In ipcam.php:
-   - Search for <pre><<span>div class="box"</span>>...</pre> and edit the URLs in: <pre><<span>a class="fancybox" href...</span></pre> and in: <pre><<span>img class="ipstr" src...</span></pre> according to your camera videostream sources.
-   In my case I use Mr-Dave Motion for linux (https://github.com/Mr-Dave/motion) to collect all the video streams from my old ip cameras. Using this program you can manage motion detection, recordings, videostreams in one place, and finally make it available to the localhost and then forwarding them to the web. But if you want, without using any intermediary software at all, you can configure every single ip camera to be exposed directly through the frontend. To find the appropriate url to expose your ip camera video stream, please refer to the manufacturer manual, or google for it. There are large Camera Connection Databases over the web...
-  
-   - Change title text and <pre><<span>span id="title"</span>></pre> according to your needs.
+## 🛠️ Requisiti di Sistema
 
-In dspace2.php
-   - Change the following code using the path of the HDD where you put your cams recodings to monitor the remaining storage.
-   (or change it to monitor any other drive you want, LOL)
-   <pre>
-   	/* get disk space free (in bytes) */
-	$df = disk_free_space("/mnt/USB3Store");
-	/* and get disk space total (in bytes)  */
-	$dt = disk_total_space("/mnt/USB3Store");
-   </pre>
+### In Produzione (Server Web)
+*   Webserver (Apache, Nginx, IIS) con supporto a **PHP 7.0+**.
+*   Cartella con permessi di scrittura per consentire il salvataggio di `config.json` tramite `api.php`.
 
-That's all for now. ^^ Enjoy. :)
+### In Sviluppo / Uso Locale (Standalone)
+*   **Python 3.8+** (già pre-configurato nel launcher Windows).
+
+---
+
+## 🚀 Installazione e Avvio Rapido
+
+### Avvio Locale su Windows (senza Apache/PHP)
+1. Fai doppio clic sul file launcher **`run.bat`** per verificare Python e avviare il server emulator.
+2. Il browser si aprirà automaticamente all'indirizzo `http://localhost:8000/ipcam.php`.
+
+### Installazione su Server Web (Apache/Nginx)
+1. Copia i file di progetto nella directory root (o in una sottocartella) del tuo server web.
+2. Assicurati che il file `config.json` sia modificabile dal server (es. `chmod 664 config.json`).
+3. Accedi tramite browser al percorso `http://<IP_SERVER>/ipcam.php`.
+
+---
+
+## ⚙️ Struttura della Configurazione (`config.json`)
+
+Le impostazioni del server, dei dischi da monitorare e delle telecamere sono memorizzate nel file `config.json`. Il file supporta la risoluzione dinamica dell'IP client tramite il placeholder `{host}`:
+
+```json
+{
+  "server": {
+    "local_host": "192.168.50.180",
+    "remote_host": "mio-host-ddns.duckdns.org",
+    "subnet_prefixes": ["192.168.", "10.0.", "127.0.0.1", "localhost"],
+    "audio_enabled_default": true
+  },
+  "disks": [
+    {
+      "name": "Storage Registrazioni",
+      "path": "/mnt/USB3Store"
+    }
+  ],
+  "cameras": [
+    {
+      "id": "cam1",
+      "name": "Camera Ingresso",
+      "stream_url": "http://{host}:8081",
+      "filters": {
+        "brightness": 100,
+        "contrast": 110,
+        "grayscale": 0,
+        "sharp": false
+      }
+    }
+  ]
+}
+```
+
+---
+
+## 📄 Licenza e Crediti
+
+Sviluppato originariamente nel 2016 e aggiornato completamente nel 2026.
+*   **Copyright**: &copy; 2016-2026 BalTac
+*   **Versione**: 2.0
+*   Rilasciato sotto licenza MIT.
