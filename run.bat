@@ -17,4 +17,6 @@ if %errorlevel% neq 0 (
 )
 
 :: Avvia il server locale con python
-python server.py
+:: Usa --port per cambiare porta (default: 8001)
+:: Usa --no-browser per non aprire il browser automaticamente
+python server.py --port 8001

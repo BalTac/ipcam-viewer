@@ -6,6 +6,8 @@ import http.server
 import socketserver
 import webbrowser
 import socket
+import argparse
+import sys
 from urllib.parse import urlparse, parse_qs
 from concurrent.futures import ThreadPoolExecutor
 
@@ -295,18 +297,35 @@ class DualStackServer(http.server.SimpleHTTPRequestHandler):
             i += 1
         return f"{round(dbl_size, 2)} {types[i]}"
 
-PORT = 8000
 socketserver.TCPServer.allow_reuse_address = True
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='IPCam Viewer - Server di sviluppo/emulatore API')
+    parser.add_argument('--port', type=int, default=8001, help='Porta su cui avviare il server (default: 8001)')
+    parser.add_argument('--host', type=str, default='0.0.0.0', help='Host su cui bindare il server (default: 0.0.0.0)')
+    parser.add_argument('--no-browser', action='store_true', help='Non aprire il browser all\'avvio')
+    args = parser.parse_args()
+
+    PORT = args.port
+    HOST = args.host
+
     print("================================================================")
-    print(f" Avvio Server Locale di test per IPCam Viewer su porta {PORT}...")
+    print(f" Avvio Server di sviluppo per IPCam Viewer")
+    print(f" Indirizzo: http://{HOST}:{PORT}/")
     print(" Premere Ctrl+C in questo terminale per arrestare il server.")
     print("================================================================")
     
-    with socketserver.TCPServer(("", PORT), DualStackServer) as httpd:
-        webbrowser.open(f"http://localhost:{PORT}/ipcam.php")
-        try:
+    if not args.no_browser:
+        webbrowser.open(f"http://{HOST}:{PORT}/")
+
+    try:
+        with socketserver.TCPServer((HOST, PORT), DualStackServer) as httpd:
+            print(f"\n Server in ascolto su http://{HOST}:{PORT}/")
+            print(" Per arrestare: Ctrl+C\n")
             httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("\nServer arrestato correttamente.")
+    except OSError as e:
+        print(f"\n[ERRORE] Impossibile avviare il server sulla porta {PORT}: {e}")
+        print(" Usa --port per specificare una porta diversa.")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\nServer arrestato correttamente.")

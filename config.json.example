@@ -1,0 +1,44 @@
+{
+  "server": {
+    "local_host": "192.168.1.100",
+    "remote_host": "mio-host.ddns.net",
+    "subnet_prefixes": [
+      "192.168.",
+      "10.0.",
+      "127.0.0.1",
+      "localhost",
+      "::1"
+    ],
+    "audio_enabled_default": true
+  },
+  "disks": [
+    {
+      "name": "Storage Registrazioni",
+      "path": "/mnt/nas/recordings"
+    }
+  ],
+  "cameras": [
+    {
+      "id": "camera1",
+      "name": "Camera Ingresso",
+      "stream_url": "http://{host}:8081",
+      "filters": {
+        "brightness": 100,
+        "contrast": 100,
+        "grayscale": 0,
+        "sharp": false
+      }
+    },
+    {
+      "id": "camera2",
+      "name": "Camera Giardino",
+      "stream_url": "http://{host}:8082",
+      "filters": {
+        "brightness": 100,
+        "contrast": 100,
+        "grayscale": 0,
+        "sharp": false
+      }
+    }
+  ]
+}
